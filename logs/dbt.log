@@ -1,0 +1,89 @@
+[0m23:39:43.580542 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FE6BCC4C20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FE6E1DBED0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FE6E1DBB10>]}
+
+
+============================== 23:39:43.591911 | 873f402b-4d46-4509-b753-b7e7f8261055 ==============================
+[0m23:39:43.591911 [info ] [MainThread]: Running with dbt=1.12.0
+[0m23:39:43.593394 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'no_print': 'None', 'static_parser': 'True', 'target_path': 'None', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\Drew\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'invocation_command': 'dbt init', 'hints_enabled': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'logs'}
+[0m23:39:43.665594 [info ] [MainThread]: Creating dbt configuration folder at C:\Users\Drew\.dbt
+[0m23:39:56.207693 [debug] [MainThread]: Starter project path: C:\Users\Drew\Documents\personal projects\hmda-analysis\venv\Lib\site-packages\dbt\include\starter_project
+[0m23:39:56.296510 [info ] [MainThread]: Setting up your profile.
+[0m23:39:59.887614 [info ] [MainThread]: Profile hmda written to C:\Users\Drew\.dbt\profiles.yml using target's sample configuration. Once updated, you'll be able to start developing with dbt.
+[0m23:39:59.893465 [info ] [MainThread]: Running dbt debug to validate the project...
+[0m23:39:59.895228 [info ] [MainThread]: dbt version: 1.12.0
+[0m23:39:59.897200 [info ] [MainThread]: python version: 3.13.5
+[0m23:39:59.899330 [info ] [MainThread]: python path: C:\Users\Drew\Documents\personal projects\hmda-analysis\venv\Scripts\python.exe
+[0m23:39:59.902938 [info ] [MainThread]: os info: Windows-11-10.0.26200-SP0
+[0m23:40:00.178431 [info ] [MainThread]: Using profiles dir at C:\Users\Drew\.dbt
+[0m23:40:00.179294 [info ] [MainThread]: Using profiles.yml file at C:\Users\Drew\.dbt\profiles.yml
+[0m23:40:00.180052 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\Drew\Documents\personal projects\hmda-analysis\hmda\dbt_project.yml
+[0m23:40:00.184540 [info ] [MainThread]: adapter type: duckdb
+[0m23:40:00.185552 [info ] [MainThread]: adapter version: 1.11.0
+[0m23:40:00.444049 [info ] [MainThread]: Configuration:
+[0m23:40:00.450684 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m23:40:00.478329 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m23:40:00.482545 [info ] [MainThread]: Required dependencies:
+[0m23:40:00.489194 [debug] [MainThread]: Executing "git --help"
+[0m23:40:00.604466 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   history    EXPERIMENTAL: Rewrite history\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Set `HEAD` or the index to a known state\n   switch     Switch branches\n   tag        Create, list, delete or verify tags\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m23:40:00.605448 [debug] [MainThread]: STDERR: "b''"
+[0m23:40:00.606143 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m23:40:00.606882 [info ] [MainThread]: Connection:
+[0m23:40:00.607771 [info ] [MainThread]:   database: dev
+[0m23:40:00.609425 [info ] [MainThread]:   schema: main
+[0m23:40:00.610881 [info ] [MainThread]:   path: dev.duckdb
+[0m23:40:00.612064 [info ] [MainThread]:   config_options: None
+[0m23:40:00.613646 [info ] [MainThread]:   extensions: None
+[0m23:40:00.616362 [info ] [MainThread]:   settings: {}
+[0m23:40:00.666926 [info ] [MainThread]:   external_root: .
+[0m23:40:00.672030 [info ] [MainThread]:   use_credential_provider: None
+[0m23:40:00.682075 [info ] [MainThread]:   attach: None
+[0m23:40:00.683622 [info ] [MainThread]:   filesystems: None
+[0m23:40:00.684402 [info ] [MainThread]:   remote: None
+[0m23:40:00.685132 [info ] [MainThread]:   plugins: None
+[0m23:40:00.685802 [info ] [MainThread]:   disable_transactions: False
+[0m23:40:00.686849 [info ] [MainThread]: Registered adapter: duckdb=1.11.0
+[0m23:40:01.338610 [debug] [MainThread]: Acquiring new duckdb connection 'debug'
+[0m23:40:08.063813 [debug] [MainThread]: Using duckdb connection "debug"
+[0m23:40:08.064734 [debug] [MainThread]: On debug: select 1 as id
+[0m23:40:08.065319 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m23:40:08.097841 [debug] [MainThread]: SQL status: OK in 0.032 seconds
+[0m23:40:08.099532 [debug] [MainThread]: On debug: Close
+[0m23:40:08.100230 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m23:40:08.101039 [info ] [MainThread]: [32mAll checks passed![0m
+[0m23:40:08.101963 [info ] [MainThread]: Your new dbt project "hmda" was created!
+Initialized new project in C:\Users\Drew\Documents\personal projects\hmda-analysis\hmda\hmda
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m23:40:08.104204 [debug] [MainThread]: Command `dbt init` succeeded at 23:40:08.103952 after 25.00 seconds
+[0m23:40:08.104843 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m23:40:08.105507 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FE6E4BA3F0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FE6E238CB0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FE6E4D9260>]}
+[0m23:40:08.106266 [debug] [MainThread]: Flushing usage events
+[0m23:40:09.718513 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m23:53:02.340222 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AA3CF34C20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AA3F4AFED0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AA3F4AFB10>]}
+
+
+============================== 23:53:02.355439 | e4a64a82-ff14-4822-bb72-1155115f56dd ==============================
+[0m23:53:02.355439 [info ] [MainThread]: Running with dbt=1.12.0
+[0m23:53:02.357563 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'no_print': 'None', 'version_check': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'False', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\Drew\\.dbt', 'indirect_selection': 'eager', 'hints_enabled': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'invocation_command': 'dbt run', 'log_path': 'logs'}
+[0m23:53:02.359155 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\Drew\Documents\personal projects\hmda-analysis\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m23:53:02.362610 [debug] [MainThread]: Command `dbt run` failed at 23:53:02.362109 after 0.29 seconds
+[0m23:53:02.364120 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AA3F4F8D60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AA3F51CB90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AA3F50C7C0>]}
+[0m23:53:02.365792 [debug] [MainThread]: Flushing usage events
+[0m23:53:04.639652 [debug] [MainThread]: An error was encountered while trying to flush usage events

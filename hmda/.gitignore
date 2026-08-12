@@ -3,3 +3,10 @@ target/
 dbt_packages/
 logs/
 .env
+data/raw/
+*.db
+*.duckdb
+hmda/target/
+hmda/dbt_packages/
+hmda/logs/
+__pycache__/
