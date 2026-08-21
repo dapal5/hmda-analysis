@@ -1,0 +1,105 @@
+version: 2
+
+models:
+  - name: stg_applications
+    description: "{{ doc('stg_applications') }}"
+    columns:
+      - name: action_taken
+        description: CFPB action-taken code (see source docs). Drives downstream denial/exclusion logic.
+        data_tests:
+          - not_null
+
+      - name: lei
+        description: Legal Entity Identifier of the reporting institution.
+        data_tests:
+          - not_null
+
+      - name: occupancy_type
+        description: "1=Principal residence, 2=Second residence, 3=Investment property."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["1", "2", "3"]
+
+      - name: business_or_commercial_purpose
+        description: "Whether the loan is for a business/commercial purpose: 1=Yes, 2=No, 1111=Exempt."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["1", "2", "1111"]
+
+      - name: reverse_mortgage
+        description: "1=Yes, 2=No, 1111=Exempt."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["1", "2", "1111"]
+
+      - name: open_end_line_of_credit
+        description: "1=Yes, 2=No, 1111=Exempt."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["1", "2", "1111"]
+
+      - name: total_units
+        description: >
+          Number of dwelling units on the property. Single digits 1-4 are exact counts;
+          5+ unit multifamily properties are reported as text buckets.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["1", "2", "3", "4", "5-24", "25-49", "50-99", "100-149", ">149"]
+
+      - name: loan_type
+        description: "1=Conventional, 2=FHA, 3=VA, 4=RHS/FSA."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["1", "2", "3", "4"]
+
+      - name: lien_status
+        description: "1=Secured by a first lien, 2=Secured by a subordinate lien."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["1", "2"]
+
+      - name: loan_purpose
+        description: "CFPB loan-purpose code (1=Home purchase, 2=Home improvement, 31/32=Refinancing, 4=Other, 5=Not applicable)."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["1", "2", "31", "32", "4", "5"]
+
+      - name: debt_to_income_ratio
+        description: >
+          Reported as either a percentage-range bucket (e.g. '20%-<30%'), a bare integer
+          string for the 36-49% range, or one of the sentinels 'NA' (not reported) /
+          'Exempt'. Never SQL NULL in this dataset - "not reported" is always an explicit
+          string, not an absence of a value.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - "<20%"
+                  - "20%-<30%"
+                  - "30%-<36%"
+                  - "36"
+                  - "37"
+                  - "38"
+                  - "39"
+                  - "40"
+                  - "41"
+                  - "42"
+                  - "43"
+                  - "44"
+                  - "45"
+                  - "46"
+                  - "47"
+                  - "48"
+                  - "49"
+                  - "50%-60%"
+                  - ">60%"
+                  - "NA"
+                  - "Exempt"

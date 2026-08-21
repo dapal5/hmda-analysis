@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: fct_denial_race_income
+    description: "{{ doc('fct_denial_race_income') }}"
+    columns:
+      - name: derived_race
+        description: Restricted to the same three races used in the regression sample.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["White", "Black or African American", "Asian"]
+
+      - name: income_band
+        description: "Bucketed income: a: <50k, b: 50-100k, c: 100-150k, d: 150k+, e: not reported."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["a: <50k", "b: 50-100k", "c: 100-150k", "d: 150k+", "e: not reported"]
+
+      - name: total
+        data_tests:
+          - not_null
+
+      - name: denials
+        data_tests:
+          - not_null
+
+      - name: denial_rate
+        data_tests:
+          - not_null

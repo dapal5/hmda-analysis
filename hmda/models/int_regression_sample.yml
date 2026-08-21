@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: int_regression_sample
+    description: "{{ doc('int_regression_sample') }}"
+    columns:
+      - name: denied
+        description: Outcome variable for the logistic regression.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+                quote: false
+
+      - name: derived_race
+        description: Restricted to the three races the regression compares.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["White", "Black or African American", "Asian"]
+
+      - name: derived_sex
+        data_tests:
+          - not_null
+
+      - name: age
+        data_tests:
+          - not_null
+
+      - name: income
+        description: Applicant income in thousands, restricted to positive values.
+        data_tests:
+          - not_null
+
+      - name: loan_amount
+        description: Restricted to positive values.
+        data_tests:
+          - not_null
+
+      - name: loan_to_value_ratio
+        description: Restricted to <= 120 to exclude extreme/likely-erroneous values.
+        data_tests:
+          - not_null
+
+      - name: debt_to_income_ratio
+        data_tests:
+          - not_null
+
+      - name: loan_purpose
+        data_tests:
+          - not_null
+
+      - name: lien_status
+        data_tests:
+          - not_null

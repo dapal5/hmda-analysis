@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: fct_denial_by_dimension
+    description: "{{ doc('fct_denial_by_dimension') }}"
+    columns:
+      - name: dimension
+        description: Which demographic column this row's rate is broken out by.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["derived_race", "derived_sex", "age"]
+
+      - name: dimension_value
+        description: The specific category within `dimension` this row summarizes.
+        data_tests:
+          - not_null
+
+      - name: total
+        description: Count of applications in this (dimension, dimension_value) cell.
+        data_tests:
+          - not_null
+
+      - name: denials
+        description: Count of denied applications in this cell.
+        data_tests:
+          - not_null
+
+      - name: denial_rate
+        description: denials / total for this cell.
+        data_tests:
+          - not_null

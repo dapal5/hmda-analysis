@@ -8,29 +8,12 @@ pd.set_option("display.max_columns", None)
 
 con = duckdb.connect("hmda.db", read_only=True)
 
-df = con.sql("""
-    SELECT
-        denied,
-        derived_race, derived_sex, age,
-        income, loan_amount, loan_to_value_ratio,
-        debt_to_income_ratio, loan_purpose, lien_status
-    FROM int_universe
-    WHERE derived_race IN ('White', 'Black or African American', 'Asian')
-""").df()
+universe_n = con.sql("SELECT COUNT(*) FROM int_universe").fetchone()[0]
+df = con.sql("SELECT * FROM int_regression_sample").df()
 con.close()
 
-before = len(df)
-df = df.dropna()
-print(f"dropped {before - len(df)} incomplete rows")
-
-before = len(df)
-df = df[df["loan_to_value_ratio"] <= 120]
-print(f"dropped {before - len(df)} LTV outliers")
-
-before = len(df)
-df = df[(df["income"] > 0) & (df["loan_amount"] > 0)]
-print(f"dropped {before - len(df)} non-positive income/loan")
-print(f"final sample: {len(df)}\n")
+print(f"int_universe: {universe_n:,} applications")
+print(f"regression sample (3 races, complete cases, LTV <= 120): {len(df):,}\n")
 
 m1 = smf.logit("denied ~ C(derived_race, Treatment('White'))", data=df).fit(disp=0)
 

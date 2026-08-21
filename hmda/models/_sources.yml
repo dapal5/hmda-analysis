@@ -3,5 +3,23 @@ version: 2
 sources:
   - name: raw
     schema: main
+    description: >
+      Raw HMDA Loan/Application Register (LAR) data loaded as-is from the FFIEC/CFPB
+      public data browser CSV export, with hive-partitioned year/state columns added
+      by the extract. All columns are loaded as VARCHAR; no cleaning or casting has
+      happened yet.
     tables:
       - name: raw
+        description: One row per LAR record as published by CFPB, before any transformation.
+        columns:
+          - name: action_taken
+            description: >
+              CFPB code for the action taken on the application: 1=Originated,
+              2=Approved not accepted, 3=Denied, 4=Withdrawn by applicant,
+              5=Closed for incompleteness, 6=Purchased loan, 7=Preapproval denied,
+              8=Preapproval approved not accepted.
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ["1", "2", "3", "4", "5", "6", "7", "8"]

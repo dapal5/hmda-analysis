@@ -6,3 +6,4 @@ data/
 *.db.wal
 .ipynb_checkpoints/
 __pycache__/
+logs/

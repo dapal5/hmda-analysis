@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Python tests
+        run: |
+          if find tests -name 'test_*.py' 2>/dev/null | grep -q .; then
+            pytest tests
+          else
+            echo "No Python tests yet, skipping"
+          fi
+
+      - name: Verify dbt project compiles
+        working-directory: hmda
+        run: dbt parse

@@ -1,21 +1,36 @@
-import requests
 from pathlib import Path
 
-state = "NC"
-year = 2025
+import requests
 
-url = "https://ffiec.cfpb.gov/v2/data-browser-api/view/csv"f"?states={state}&years={year}&actions_taken=1,2,3,4,5,6,7,8"
+from logging_config import get_logger
 
-dest = Path(f'data/raw/year={year}/state={state}/lar.csv')
+logger = get_logger("extract")
 
-dest.parent.mkdir(parents=True, exist_ok=True)
+STATE = "NC"
+YEAR = 2025
 
 
-response = requests.get(url, stream = True)
-response.raise_for_status()
+def main():
+    url = (
+        "https://ffiec.cfpb.gov/v2/data-browser-api/view/csv"
+        f"?states={STATE}&years={YEAR}&actions_taken=1,2,3,4,5,6,7,8"
+    )
+    dest = Path(f"data/raw/year={YEAR}/state={STATE}/lar.csv")
+    dest.parent.mkdir(parents=True, exist_ok=True)
 
-with open(dest, "wb") as f:
-    for chunk in response.iter_content(chunk_size=1024 * 1024):
-        f.write(chunk)
+    logger.info(f"Extraction started for state={STATE} year={YEAR}")
 
-print(f"saved to {dest}")
+    response = requests.get(url, stream=True)
+    response.raise_for_status()
+
+    line_count = 0
+    with open(dest, "wb") as f:
+        for chunk in response.iter_content(chunk_size=1024 * 1024):
+            f.write(chunk)
+            line_count += chunk.count(b"\n")
+
+    logger.info(f"Downloaded {line_count - 1:,} records to {dest}")
+
+
+if __name__ == "__main__":
+    main()
