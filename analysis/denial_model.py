@@ -4,7 +4,7 @@ import pandas as pd
 import statsmodels.formula.api as smf
 
 pd.set_option("display.width", None)
-pd.set_option("display.max_columns", None) 
+pd.set_option("display.max_columns", None)
 
 con = duckdb.connect("hmda.db", read_only=True)
 
@@ -15,12 +15,15 @@ con.close()
 print(f"int_universe: {universe_n:,} applications")
 print(f"regression sample (3 races, complete cases, LTV <= 120): {len(df):,}\n")
 
-m1 = smf.logit("denied ~ C(derived_race, Treatment('White'))", data=df).fit(disp=0)
+RACE = "C(derived_race, Treatment('White'))"
 
-m2 = smf.logit(
-    "denied ~ C(derived_race, Treatment('White')) + np.log(income) + np.log(loan_amount) "
-    "+ loan_to_value_ratio + C(debt_to_income_ratio, Treatment('<20%'))",
-    data=df).fit(disp=0)
+stages = {
+    "1. RAW (race only)": f"denied ~ {RACE}",
+    "2. + income, loan amount": f"denied ~ {RACE} + np.log(income) + np.log(loan_amount)",
+    "3. + loan-to-value ratio": f"denied ~ {RACE} + np.log(income) + np.log(loan_amount) + loan_to_value_ratio",
+    "4. + debt-to-income ratio": f"denied ~ {RACE} + np.log(income) + np.log(loan_amount) + loan_to_value_ratio + C(debt_to_income_ratio, Treatment('<20%'))",
+}
+
 
 def odds(model):
     keep = model.params.filter(like="derived_race")
@@ -31,7 +34,13 @@ def odds(model):
         "ci_high": np.exp(ci[1]),
     }).round(3)
 
-print("RAW (race only):")
-print(odds(m1), "\n")
-print("ADJUSTED (+ income, loan, LTV, DTI):")
-print(odds(m2))
+
+for label, formula in stages.items():
+    model = smf.logit(formula, data=df).fit(disp=0)
+    print(label)
+    print(odds(model), "\n")
+
+alt = df[df["loan_to_value_ratio"] <= 100]
+print(f"SENSITIVITY: LTV <= 100 instead of 120 (n={len(alt):,})")
+alt_model = smf.logit(stages["4. + debt-to-income ratio"], data=alt).fit(disp=0)
+print(odds(alt_model))
